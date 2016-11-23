@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace CwVanDerMeij.Telegram.Bot.Api
 {
-    public class Bot
+    public class BotApi
     {
         private const string API_URL = "https://api.telegram.org/bot";
         private readonly string msBotToken;
         private HttpClient moHttpClient = new HttpClient();
         private JsonSerializer moJsonSerializer = new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore };
 
-        public Bot(string psBotToken)
+        public BotApi(string psBotToken)
         {
             msBotToken = psBotToken;
             moHttpClient.BaseAddress = new Uri(API_URL + msBotToken + "/");
@@ -100,7 +100,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
             }
         }
 
-        public async Task<Message> SendMessage(int pnChatId, string psText, string psParseMode, bool? pbDisableWebPagePreview, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
+        public async Task<Message> SendMessage(long pnChatId, string psText, string psParseMode, bool? pbDisableWebPagePreview, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
         {
             return await SendMessage(new SendMessageParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), Text = psText, ParseMode = psParseMode, DisableWebPagePreview = pbDisableWebPagePreview, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
         }
@@ -136,7 +136,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
             }
         }
 
-        public async Task<Message> ForwardMessage(int pnChatId, int pnFromChatId, bool? pbDisableNotification, int pnMessageId)
+        public async Task<Message> ForwardMessage(long pnChatId, int pnFromChatId, bool? pbDisableNotification, int pnMessageId)
         {
             return await ForwardMessage(new ForwardMessageParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), FromChatId = pnFromChatId.ToString(), DisableNotification = pbDisableNotification, MessageId = pnMessageId});
         }
@@ -146,7 +146,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
             return await ForwardMessage(new ForwardMessageParameters() { ChatIdOrChannelUsername = psChannelUsername, FromChatId = pnFromChatId.ToString(), DisableNotification = pbDisableNotification, MessageId = pnMessageId });
         }
 
-        public async Task<Message> ForwardMessage(int pnChatId, string psFromChannelUsername, bool? pbDisableNotification, int pnMessageId)
+        public async Task<Message> ForwardMessage(long pnChatId, string psFromChannelUsername, bool? pbDisableNotification, int pnMessageId)
         {
             return await ForwardMessage(new ForwardMessageParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), FromChatId = psFromChannelUsername, DisableNotification = pbDisableNotification, MessageId = pnMessageId });
         }
@@ -217,7 +217,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
             }
         }
 
-        public async Task<Message> SendPhoto(int pnChatId, InputFile poInputFile, string psCaption, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
+        public async Task<Message> SendPhoto(long pnChatId, InputFile poInputFile, string psCaption, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
         {
             return await SendPhoto(new SendPhotoParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), InputFile = poInputFile, Caption = psCaption, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
         }
@@ -227,7 +227,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
             return await SendPhoto(new SendPhotoParameters() { ChatIdOrChannelUsername = psChannelUsername, InputFile = poInputFile, Caption = psCaption, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
         }
 
-        public async Task<Message> SendPhoto(int pnChatId, string psPhotoIdOrUrl, string psCaption, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
+        public async Task<Message> SendPhoto(long pnChatId, string psPhotoIdOrUrl, string psCaption, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
         {
             return await SendPhoto(new SendPhotoParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), PhotoIdOrPhotoUrl = psPhotoIdOrUrl, Caption = psCaption, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
         }

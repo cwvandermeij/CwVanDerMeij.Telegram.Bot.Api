@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CwVanDerMeij.Telegram.Bot.Api.Parameters
 {
-    public class SendPhotoParameters
+    public class SendDocumentParameters
     {
         [JsonProperty("chat_id")]
         public string ChatIdOrChannelUsername { get; set; }
-        [JsonProperty("photo")]
-        public string PhotoIdOrPhotoUrl { get; set; }
+        [JsonProperty("document")]
+        public string DocumentIdOrDocumentUrl { get; set; }
         [JsonProperty("caption")]
         public string Caption { get; set; }
         [JsonProperty("disable_notification")]

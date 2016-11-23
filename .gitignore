@@ -251,3 +251,5 @@ paket-files/
 .idea/
 *.sln.iml
 /CwVanDerMeij.Telegram.Bot.Api/src/TestApp
+/CwVanDerMeij.Telegram.Bot.Api/AndressBanenesBot
+/CwVanDerMeij.Telegram.Bot.Api/src/AndressBanenesBot
