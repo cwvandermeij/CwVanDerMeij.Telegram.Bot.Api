@@ -11,7 +11,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api.Parameters
         [JsonProperty("chat_id")]
         public string ChatIdOrChannelUsername { get; set; }
         [JsonProperty("from_chat_id")]
-        public string FromChatId { get; set; }
+        public string FromChatIdOrChannelUsername { get; set; }
         [JsonProperty("disable_notification")]
         public bool? DisableNotification { get; set; }
         [JsonProperty("message_id")]

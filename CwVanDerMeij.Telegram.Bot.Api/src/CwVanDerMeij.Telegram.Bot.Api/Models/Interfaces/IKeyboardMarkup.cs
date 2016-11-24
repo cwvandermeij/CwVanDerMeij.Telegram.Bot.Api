@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CwVanDerMeij.Telegram.Bot.Api.Models.Interfaces
 {
-    public class IKeyboardMarkup
+    public interface IKeyboardMarkup
     {
     }
 }
