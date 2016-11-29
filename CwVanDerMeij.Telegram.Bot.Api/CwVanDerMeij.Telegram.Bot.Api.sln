@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CwVanDerMeij.Telegram.Bot.Api", "src\CwVanDerMeij.Telegram.Bot.Api\CwVanDerMeij.Telegram.Bot.Api.xproj", "{F1C3DB1D-52AC-4021-8F85-AAA9F29D724C}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestApp", "src\TestApp\TestApp.xproj", "{3FD967F0-5787-4BD8-975B-7DE851C796E1}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AndressBanenesBot", "AndressBanenesBot\AndressBanenesBot.xproj", "{D5DFC8CA-641A-4C1C-B329-FD2F2F4FCDA7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,21 +22,11 @@ Global
 		{F1C3DB1D-52AC-4021-8F85-AAA9F29D724C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C3DB1D-52AC-4021-8F85-AAA9F29D724C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C3DB1D-52AC-4021-8F85-AAA9F29D724C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FD967F0-5787-4BD8-975B-7DE851C796E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FD967F0-5787-4BD8-975B-7DE851C796E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FD967F0-5787-4BD8-975B-7DE851C796E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FD967F0-5787-4BD8-975B-7DE851C796E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5DFC8CA-641A-4C1C-B329-FD2F2F4FCDA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5DFC8CA-641A-4C1C-B329-FD2F2F4FCDA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5DFC8CA-641A-4C1C-B329-FD2F2F4FCDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5DFC8CA-641A-4C1C-B329-FD2F2F4FCDA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F1C3DB1D-52AC-4021-8F85-AAA9F29D724C} = {5B63040C-2216-4C17-A12E-B2327D45CC24}
-		{3FD967F0-5787-4BD8-975B-7DE851C796E1} = {5B63040C-2216-4C17-A12E-B2327D45CC24}
-		{D5DFC8CA-641A-4C1C-B329-FD2F2F4FCDA7} = {5B63040C-2216-4C17-A12E-B2327D45CC24}
 	EndGlobalSection
 EndGlobal

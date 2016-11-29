@@ -237,7 +237,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
         {
             return await SendPhoto(new SendPhotoParameters() { ChatIdOrChannelUsername = psChannelUsername, PhotoIdOrPhotoUrl = psPhotoIdOrUrl, Caption = psCaption, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
         }
-    
+
         private async Task<Message> SendAudio(SendAudioParameters p)
         {
             ApiResult<Message> loResult;
@@ -350,7 +350,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
                 {
                     loMultipartFormDataContent.Add(new StringContent(p.Caption), "caption");
                 }
-                
+
                 if (p.DisableNotification.HasValue)
                 {
                     loMultipartFormDataContent.Add(new StringContent(p.DisableNotification.ToString()), "disable_notification");
@@ -426,7 +426,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
                 MultipartFormDataContent loMultipartFormDataContent = new MultipartFormDataContent();
                 loMultipartFormDataContent.Add(new StringContent(p.ChatIdOrChannelUsername), "chat_id");
                 loMultipartFormDataContent.Add(new ByteArrayContent(p.InputFile.FileData), "sticker", p.InputFile.FileName);
-                
+
                 if (p.DisableNotification.HasValue)
                 {
                     loMultipartFormDataContent.Add(new StringContent(p.DisableNotification.ToString()), "disable_notification");
@@ -608,7 +608,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
                 {
                     loMultipartFormDataContent.Add(new StringContent(p.Duration.ToString()), "duration");
                 }
-                
+
                 if (p.DisableNotification.HasValue)
                 {
                     loMultipartFormDataContent.Add(new StringContent(p.DisableNotification.ToString()), "disable_notification");
@@ -809,7 +809,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
 
         public async Task<bool> SendChatAction(long pnChatId, ChatActionType poAction)
         {
-            return await SendChatAction(new SendChatActionParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), Action = poAction});
+            return await SendChatAction(new SendChatActionParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), Action = poAction });
         }
 
         public async Task<bool> SendChatAction(string psChannelUsername, ChatActionType poAction)
@@ -918,7 +918,7 @@ namespace CwVanDerMeij.Telegram.Bot.Api
         private async Task<bool> LeaveChat(LeaveChatParameters p)
         {
             ApiResult<bool> loResult;
-            
+
             try
             {
                 HttpResponseMessage loHttpResponseMessage = await moHttpClient.PostAsync("leaveChat", new StringContent(JsonSerialize(p), Encoding.UTF8, "application/json"));
@@ -1129,6 +1129,114 @@ namespace CwVanDerMeij.Telegram.Bot.Api
         public async Task<ChatMember> GetChatMember(string psChannelUsername, int pnUserId)
         {
             return await GetChatMember(new GetChatMemberParameters() { ChatIdOrChannelUsername = psChannelUsername, UserId = pnUserId });
+        }
+
+        private async Task<bool> AnswerCallbackQuery(AnswerCallbackQueryParameters p)
+        {
+            ApiResult<bool> loResult;
+
+            try
+            {
+                HttpResponseMessage loHttpResponseMessage = await moHttpClient.PostAsync("answerCallbackQuery", new StringContent(JsonSerialize(p), Encoding.UTF8, "application/json"));
+                string lsContent = await loHttpResponseMessage.Content.ReadAsStringAsync();
+
+                loResult = JsonDeserialize<ApiResult<bool>>(lsContent);
+            }
+            catch (Exception loException)
+            {
+                throw loException;
+            }
+
+            if (loResult.Ok)
+            {
+                return loResult.Result;
+            }
+            else
+            {
+                throw new Exception(loResult.Description);
+            }
+        }
+
+        public async Task<bool> AnswerCallbackQuery(string psCallbackQueryId, string psText, bool? pbShowAlert, string psUrl, int? pnCacheTime)
+        {
+            return await AnswerCallbackQuery(new AnswerCallbackQueryParameters() { CallbackQueryId = psCallbackQueryId, Text = psText, ShowAlert = pbShowAlert, Url = psUrl, CacheTime = pnCacheTime });
+        }
+
+        private async Task<Message> SendGame(SendGameParameters p)
+        {
+            ApiResult<Message> loResult;
+
+            try
+            {
+                HttpResponseMessage loHttpResponseMessage = await moHttpClient.PostAsync("sendGame", new StringContent(JsonSerialize(p), Encoding.UTF8, "application/json"));
+                string lsContent = await loHttpResponseMessage.Content.ReadAsStringAsync();
+
+                loResult = JsonDeserialize<ApiResult<Message>>(lsContent);
+            }
+            catch (Exception loException)
+            {
+                throw loException;
+            }
+
+            if (loResult.Ok)
+            {
+                return loResult.Result;
+            }
+            else
+            {
+                throw new Exception(loResult.Description);
+            }
+        }
+
+        public async Task<Message> SendGame(long pnChatId, string psGameShortName, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
+        {
+            return await SendGame(new SendGameParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), GameShortName = psGameShortName, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
+        }
+
+        public async Task<Message> SendGame(string psChannelUsername, string psGameShortName, bool? pbDisableNotification, int? pnReplyToMessageId, IKeyboardMarkup poReplyMarkup)
+        {
+            return await SendGame(new SendGameParameters() { ChatIdOrChannelUsername = psChannelUsername, GameShortName = psGameShortName, DisableNotification = pbDisableNotification, ReplyToMessageId = pnReplyToMessageId, ReplyMarkup = poReplyMarkup });
+        }
+
+        private async Task<T> EditMessageText<T>(EditMessageTextParameters p)
+        {
+            ApiResult<T> loResult;
+
+            try
+            {
+                HttpResponseMessage loHttpResponseMessage = await moHttpClient.PostAsync("editMessageText", new StringContent(JsonSerialize(p), Encoding.UTF8, "application/json"));
+                string lsContent = await loHttpResponseMessage.Content.ReadAsStringAsync();
+
+                loResult = JsonDeserialize<ApiResult<T>>(lsContent);
+            }
+            catch (Exception loException)
+            {
+                throw loException;
+            }
+
+            if (loResult.Ok)
+            {
+                return loResult.Result;
+            }
+            else
+            {
+                throw new Exception(loResult.Description);
+            }
+        }
+
+        public async Task<Message> EditMessageText(long pnChatId, int pnMessageId, string psText, string psParseMode, bool? pbDisableWebPagePreview, IKeyboardMarkup poReplyMarkup)
+        {
+            return await EditMessageText<Message>(new EditMessageTextParameters() { ChatIdOrChannelUsername = pnChatId.ToString(), MessageId = pnMessageId, Text = psText, ParseMode = psParseMode, DisableWebPagePreview = pbDisableWebPagePreview, ReplyMarkup = poReplyMarkup });
+        }
+
+        public async Task<Message> EditMessageText(string psChannelUsername, int pnMessageId, string psText, string psParseMode, bool? pbDisableWebPagePreview, IKeyboardMarkup poReplyMarkup)
+        {
+            return await EditMessageText<Message>(new EditMessageTextParameters() { ChatIdOrChannelUsername = psChannelUsername, MessageId = pnMessageId, Text = psText, ParseMode = psParseMode, DisableWebPagePreview = pbDisableWebPagePreview, ReplyMarkup = poReplyMarkup });
+        }
+
+        public async Task<bool> EditMessageText(string psInlineMessageId, string psText, string psParseMode, bool? pbDisableWebPagePreview, IKeyboardMarkup poReplyMarkup)
+        {
+            return await EditMessageText<bool>(new EditMessageTextParameters() { InlineMessageId = psInlineMessageId, Text = psText, ParseMode = psParseMode, DisableWebPagePreview = pbDisableWebPagePreview, ReplyMarkup = poReplyMarkup });
         }
     }
 }
