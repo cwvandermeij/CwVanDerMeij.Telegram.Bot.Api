@@ -23,10 +23,12 @@ namespace CwVanDerMeij.Telegram.Bot.Api.Models
         [JsonProperty("forward_from_chat")]
         public Chat ForwardFromChat { get; set; }
         [JsonProperty("forward_date")]
+        [JsonConverter(typeof(UnixTimeStampDateTimeConverter))]
         public DateTime? ForwardDate { get; set; }
         [JsonProperty("reply_to_message")]
         public Message ReplyToMessage { get; set; }
         [JsonProperty("edit_date")]
+        [JsonConverter(typeof(UnixTimeStampDateTimeConverter))]
         public DateTime? EditDate { get; set; }
         [JsonProperty("text")]
         public string Text { get; set; }
